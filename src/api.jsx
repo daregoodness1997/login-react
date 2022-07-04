@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiURL = import.meta.env.API_URL;
+let apiURL = import.meta.env.VITE_API_URL;
 
 console.log(apiURL);
 
@@ -15,8 +15,24 @@ export default {
     try {
       const options = {
         method: 'GET',
-        url: `https://login-passport-api.herokuapp.com/api/v1/auth/google`,
+        url: `${apiURL}/api/v1/auth/google`,
         headers: headers,
+      };
+
+      const result = await axios.request(options);
+
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  handleLogin: async body => {
+    try {
+      const options = {
+        method: 'POST',
+        url: `${apiURL}/api/v1/auth/register`,
+        headers: headers,
+        data: body,
       };
 
       const result = await axios.request(options);

@@ -3,7 +3,7 @@ import api from '../api';
 // import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export const Register = () => {
+export const Login = () => {
   let navigate = useNavigate();
   const [response, setResponse] = useState({});
   const [value, setValue] = useState({});
@@ -11,17 +11,15 @@ export const Register = () => {
     const result = await api.handleGoogle();
     setResponse(result);
   };
-  const registerLocal = async value => {
+  const loginLocal = async value => {
     try {
-      const result = await api.handleRegister(value);
-      setResponse(result.data);
-      navigate('/auth/login');
+      // const result = await api.handleLogin(value);
+      // setResponse(result.data);
+      navigate('/dashboard');
     } catch (err) {
       console.log(err);
     }
   };
-
-  
 
   console.log('value', value);
   console.log('response', response);
@@ -30,7 +28,7 @@ export const Register = () => {
       <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-            Create to your account
+            Login to your account
           </h2>
         </div>
 
@@ -41,66 +39,6 @@ export const Register = () => {
               // method='post'
               // onSubmit={() => loginLocal(value)}
             >
-              <div>
-                <label
-                  htmlFor='displayName'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Display Name
-                </label>
-                <div className='mt-1'>
-                  <input
-                    id='displayName'
-                    name='displayName'
-                    type='text'
-                    required
-                    onChange={e =>
-                      setValue({ ...value, [e.target.name]: e.target.value })
-                    }
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor='firstName'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  First Name
-                </label>
-                <div className='mt-1'>
-                  <input
-                    id='firstName'
-                    name='firstName'
-                    type='text'
-                    required
-                    onChange={e =>
-                      setValue({ ...value, [e.target.name]: e.target.value })
-                    }
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor='lastName'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Last Name
-                </label>
-                <div className='mt-1'>
-                  <input
-                    id='lastName'
-                    name='lastName'
-                    type='text'
-                    required
-                    onChange={e =>
-                      setValue({ ...value, [e.target.name]: e.target.value })
-                    }
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                  />
-                </div>
-              </div>
               <div>
                 <label
                   htmlFor='email'
@@ -174,10 +112,10 @@ export const Register = () => {
               <div>
                 <button
                   // type='submit'
-                  onClick={() => registerLocal(value)}
+                  onClick={() => loginLocal(value)}
                   className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                 >
-                  Create your Account
+                  Login your Account
                 </button>
               </div>
             </div>
@@ -189,7 +127,7 @@ export const Register = () => {
                 </div>
                 <div className='relative flex justify-center text-sm'>
                   <span className='px-2 bg-white text-gray-500'>
-                    Or Sign up with
+                    Or Login up with
                   </span>
                 </div>
               </div>
@@ -199,7 +137,7 @@ export const Register = () => {
                   onClick={() => loginGoogle()}
                   className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-gray-500 text-sm font-medium text-white bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 mt-2'
                 >
-                  Sign up with Google
+                  Login with Google
                 </button>
               </div>
             </div>

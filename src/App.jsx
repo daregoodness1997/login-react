@@ -1,15 +1,21 @@
 import { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Register } from './pages/Register';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Login } from './pages/Login';
+import { Dashboard } from './pages/Dashboard';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className='App'>
-      <Register />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Register />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/auth/Login' element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

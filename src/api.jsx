@@ -30,6 +30,22 @@ export default {
     try {
       const options = {
         method: 'POST',
+        url: `${apiURL}/api/v1/auth/login`,
+        headers: headers,
+        data: body,
+      };
+
+      const result = await axios.request(options);
+
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  handleRegister: async body => {
+    try {
+      const options = {
+        method: 'POST',
         url: `${apiURL}/api/v1/auth/register`,
         headers: headers,
         data: body,

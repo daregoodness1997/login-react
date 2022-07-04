@@ -1,14 +1,16 @@
+import { useState } from 'react';
+import api from '../api';
+
 export const Login = () => {
+  const [response, setResponse] = useState();
+  const loginGoogle = async () => {
+    const result = await api.handleGoogle();
+    setResponse(result);
+  };
+
+  console.log(response);
   return (
     <>
-      {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full bg-gray-50">
-          <body class="h-full">
-          ```
-        */}
       <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <img
@@ -112,7 +114,7 @@ export const Login = () => {
 
               <div className='mt-6 '>
                 <button
-                  type='submit'
+                  onClick={() => loginGoogle()}
                   className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-gray-500 text-sm font-medium text-white bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 mt-2'
                 >
                   Sign up with Google

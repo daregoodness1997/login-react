@@ -1,24 +1,38 @@
 import { useState } from 'react';
 import api from '../api';
+// import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export const Login = () => {
+export const Register = () => {
   const [response, setResponse] = useState({});
   const [value, setValue] = useState({});
   const loginGoogle = async () => {
     const result = await api.handleGoogle();
     setResponse(result);
   };
-  const loginLocal = async () => {
+  const loginLocal = async value => {
     try {
       const result = await api.handleLogin(value);
-      setResponse(result);
+      setResponse(result.data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  console.log('data', response);
-  console.log('response', value);
+  // const loginLocal = async value => {
+  //   try {
+  //     const res = axios
+  //       .post(`${import.meta.env.VITE_API_URL}/api/v1/auth/register`, value)
+  //       .then(response => {
+  //         setResponse(response.data);
+  //       });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  console.log('value', value);
+  console.log('response', response);
   return (
     <>
       <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
@@ -30,7 +44,11 @@ export const Login = () => {
 
         <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
           <div className='bg-white py-8 px-4  sm:rounded-lg sm:px-10'>
-            <form className='space-y-6' method='post'>
+            <div
+              className='space-y-6'
+              // method='post'
+              // onSubmit={() => loginLocal(value)}
+            >
               <div>
                 <label
                   htmlFor='displayName'
@@ -164,13 +182,13 @@ export const Login = () => {
               <div>
                 <button
                   // type='submit'
-                  onClick={loginLocal}
+                  onClick={() => loginLocal(value)}
                   className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                 >
                   Create your Account
                 </button>
               </div>
-            </form>
+            </div>
 
             <div className='mt-6'>
               <div className='relative'>

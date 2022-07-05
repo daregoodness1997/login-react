@@ -13,8 +13,8 @@ export const Login = () => {
   };
   const loginLocal = async value => {
     try {
-      // const result = await api.handleLogin(value);
-      // setResponse(result.data);
+      const result = await api.handleLogin(value);
+      setResponse(result.data);
       navigate('/dashboard');
     } catch (err) {
       console.log(err);

@@ -27,10 +27,25 @@ export default {
       console.log(err);
     }
   },
+  handleGetUser: async () => {
+    try {
+      const options = {
+        method: 'GET',
+        url: `${apiURL}/api/v1/auth/login/`,
+        headers: headers,
+      };
+
+      const result = await axios.request(options);
+
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+  },
   handleLogin: async body => {
     try {
       const options = {
-        method: 'POST',
+        method: 'GET',
         url: `${apiURL}/api/v1/auth/login`,
         headers: headers,
         data: body,

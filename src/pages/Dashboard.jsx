@@ -1,7 +1,8 @@
-import { Fragment } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { SearchIcon } from '@heroicons/react/solid';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import api from '../api';
 
 const user = {
   name: 'Tom Cook',
@@ -27,7 +28,18 @@ function classNames(...classes) {
 }
 
 export const Dashboard = () => {
-  console.log(window.json);
+  const [googleuser, setUser] = useState({});
+
+  const getUser = async () => {
+    const result = await api.handleGetUser();
+    setUser(result);
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  console.log(googleuser);
   return (
     <>
       <div className='min-h-full'>

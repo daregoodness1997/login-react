@@ -8,8 +8,9 @@ export const Register = () => {
   const [response, setResponse] = useState({});
   const [value, setValue] = useState({});
   const Google = async () => {
-    const result = await api.handleGoogle();
-    setResponse(result);
+    // const result = await api.handleGoogle();
+    // setResponse(result);
+    window.open('http://localhost:8080/api/v1/auth/google', '_self');
   };
   const registerLocal = async value => {
     try {
@@ -193,14 +194,14 @@ export const Register = () => {
               </div>
 
               <div className='mt-6 '>
-                <a href='http://localhost:8080/api/v1/auth/google'>
-                  <button
-                    // onClick={() => Google()}
-                    className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-gray-500 text-sm font-medium text-white bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 mt-2'
-                  >
-                    Sign up with Google
-                  </button>
-                </a>
+                {/* <a href='http://localhost:8080/api/v1/auth/google'> */}
+                <button
+                  onClick={() => Google()}
+                  className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-gray-500 text-sm font-medium text-white bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 mt-2'
+                >
+                  Sign up with Google
+                </button>
+                {/* </a> */}
               </div>
             </div>
           </div>
